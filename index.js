@@ -31,7 +31,7 @@ app.post('/api/upload', upload.single('file'), (req, res) => {
       original: req.file.originalname,
       type: req.file.mimetype,
       size: req.file.size,
-      path: "/file/" + req.file.filename
+      path: "/file/" + req.file.filename,
       url: `https://${req.hostname}/file/` + req.file.filename,
     })
   } catch (e) {
