@@ -2,16 +2,23 @@ const express = require('express');
 const multer = require('multer');
 const path = require('path');
 const fs = require("fs")
+const crypto = require("crypto");
 
 const app = express();
-const port = 3000;
+const port = 8080;
+
+function randomHex(length) {
+  const bytes = Math.ceil(length / 2);
+  const randomBytes = crypto.randomBytes(bytes);
+  return randomBytes.toString('hex').slice(0, length);
+}
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'public/temp/');
   },
   filename: (req, file, cb) => {
-    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    cb(null, randomHex(21) + path.extname(file.originalname));
   },
 });
 
