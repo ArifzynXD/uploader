@@ -5,7 +5,7 @@ const fs = require("fs")
 const crypto = require("crypto");
 
 const app = express();
-const port = 8080;
+const port = 3000;
 
 function randomHex(length) {
   const bytes = Math.ceil(length / 2);
